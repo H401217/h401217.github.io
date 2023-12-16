@@ -1,0 +1,120 @@
+<html>
+<head>
+</head>
+<body>
+<svg width="200px" height="200px" viewBox="0 0 250 220" xmlns="http://www.w3.org/2000/svg">
+  <defs></defs>
+  <g transform="matrix(1, 0, 0, 1, -213.235229, -112.558197)">
+    <path id="body" style="fill: rgb(198, 153, 91); fill-rule: nonzero; stroke: rgb(0, 0, 0); stroke-width: 2px;" d="M 412.071 311.325 C 394.269 322.188 306.509 330.818 251.508 312.323 C 254.816 310.741 165.324 295.315 253.958 168.953 C 306.606 93.895 361.157 95.279 414.404 175.277 C 493.648 294.333 413.326 310.699 411.837 311.563" transform="matrix(0.999997, 0.002458, -0.002458, 0.999997, 0.538137, -0.815344)"></path>
+    <ellipse id="leftretina" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 1.5px;" cx="310.696" cy="164.954" rx="21.135" ry="23.499"></ellipse>
+    <ellipse id="rightretina" style="stroke: rgb(0, 0, 0); fill: rgb(255, 255, 255); stroke-width: 1.5px;" cx="352.955" cy="164.954" rx="21.135" ry="23.499"></ellipse>
+    <ellipse id="lefteye" style="stroke: rgb(0, 0, 0); stroke-width: 0px;" cx="310.985" cy="164.884" rx="6.617" ry="6.736"></ellipse>
+    <ellipse id="righteye" style="stroke: rgb(0, 0, 0); stroke-width: 0px;" cx="352.955" cy="164.884" rx="6.617" ry="6.736"></ellipse>
+    <path id="ULlid" style="stroke-width: 1.5px; stroke: rgb(0, 0, 0); fill: rgb(198, 153, 91);" d="M 289.561 164.954 C 289.73 150.567 300.112 141.418 310.544 141.405 C 321.098 141.391 331.701 150.49 331.831 164.954 C 331.831 164.954 331.077 164.954 310.696 164.954 C 290.315 164.954 289.561 164.954 289.561 164.954 Z"></path>
+    <path id="DLlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0);" d="M 289.566 188.513 C 289.735 174.126 300.117 164.977 310.549 164.964 C 321.103 164.95 331.706 174.049 331.836 188.513 C 331.836 188.513 331.185 188.513 310.701 188.513 C 290.217 188.513 289.566 188.513 289.566 188.513 Z" transform="matrix(-1, 0, 0, -1, 621.402023539068, 353.476989746094)"></path>
+    <path id="URlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0);" d="M 331.829 164.96 C 331.998 150.573 342.38 141.424 352.812 141.411 C 363.366 141.397 373.969 150.496 374.099 164.96 C 374.099 164.96 373.356 164.96 352.964 164.96 C 332.572 164.96 331.829 164.96 331.829 164.96 Z"></path>
+    <path id="DRlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0); transform-origin: 352.969px 176.744px;" d="M 331.834 188.519 C 332.003 174.132 342.385 164.983 352.817 164.97 C 363.371 164.956 373.974 174.055 374.104 188.519 C 374.104 188.519 373.459 188.519 352.969 188.519 C 332.479 188.519 331.834 188.519 331.834 188.519 Z" transform="matrix(-1, 0, 0, -1, 0, 0)"></path>
+    <path id="mouth" style="fill: rgb(216, 216, 216); stroke-width: 2.5px; stroke: rgb(0, 0, 0);" d="M 275.293 195.496 C 275.293 195.496 269.288 212.506 275.151 221.462 C 280.656 229.872 297.703 223.551 297.703 223.551 C 297.703 223.551 281.078 229.465 275.031 221.38 C 269.39 213.838 275.293 195.496 275.293 195.496 Z"></path>
+  </g>
+</svg>
+<br>
+Control Type<br>
+<input type="radio" id="automatic" name="control_rig" value="auto">
+<label for="automatic">Automatic</label><br>
+<input type="radio" id="manualrig" name="control_rig" value="manual" checked="true">
+<label for="manualrig">Manual</label><br><br>
+Manual Control<br>
+<input type="range" id="eyesX" min="-100" max="100" class="rigInput">
+<label for="eyesX">Eyes (X)</label><br>
+<input type="range" id="eyesY" min="-100" max="100" class="rigInput">
+<label for="eyesY">Eyes (Y)</label><br>
+<input type="range" id="lidsU" min="0" max="100" class="rigInput">
+<label for="lidsU">Eyelids (Up)</label><br>
+<input type="range" id="lidsD" min="0" max="100" class="rigInput">
+<label for="lidsD">Eyelids (Down)</label><br>
+<br>
+<input type="range" id="mouthC" min="0" max="100" class="rigInput">
+<label for="mouthC">Mouth (Centered)</label><br>
+<input type="range" id="mouthY" min="-100" max="100" class="rigInput">
+<label for="mouthY">Mouth (Y)</label><br>
+<input type="range" id="mouthU" min="0" max="100" class="rigInput">
+<label for="mouthU">Mouth (Up)</label><br>
+<input type="range" id="mouthD" min="0" max="100" class="rigInput">
+<label for="mouthD">Mouth (Down)</label><br>
+<br>
+<input type="range" id="fat" min="0" max="100" class="rigInput">
+<label for="fat">Fatness</label><br>
+<script>
+	function getE(id) { //get element
+		return document.getElementById(id)
+	}
+	var LE = getE("lefteye")
+	var RE = getE("righteye")
+	var LR = getE("leftretina")
+	var RR = getE("rightretina")
+	
+	var ULL = getE("ULlid")
+	var DLL = getE("DLlid")
+	var URL = getE("URlid")
+	var DRL = getE("DRlid")
+
+	var lex = 0
+	var ley = 0
+	var rex = 0
+	var rey = 0
+
+	var eyeRadius = 10
+	
+	function moveEyes(event,t) {
+		let lr = parseFloat(LR.getAttribute('cx'))
+		let rr = parseFloat(RR.getAttribute('cx'))
+		let lry = parseFloat(LR.getAttribute('cy'))
+		let rry = parseFloat(RR.getAttribute('cy'))
+
+		if (t=="X") {
+			lex = parseFloat(event.target.value)/100
+			rex = parseFloat(event.target.value)/100
+		} else if (t=="Y") {
+			ley = parseFloat(event.target.value)/100
+			rey = parseFloat(event.target.value)/100
+		};
+
+		LE.setAttribute('cx',lr+(eyeRadius*lex));
+		RE.setAttribute('cx',rr+(eyeRadius*rex));
+		LE.setAttribute('cy',lry+(eyeRadius*ley));
+		RE.setAttribute('cy',rry+(eyeRadius*rey));
+	}
+
+	function moveLids(event,side) {
+		let value = parseFloat(event.target.value)
+		let pow = 23
+		let val = (value/100)*pow
+		if (side==="U") {
+			ULL.setAttribute('d',`M 289.561 164.954 C 289.73 150.567 300.112 141.418 310.544 141.405 C 321.098 141.391 331.701 150.49 331.831 164.954 C 331.831 164.954 331.077 ${164.954-val} 310.696 ${164.954-val} C 290.315 ${164.954-val} 289.561 164.954 289.561 164.954 Z`)
+			URL.setAttribute('d',`M 331.829 164.96 C 331.998 150.573 342.38 141.424 352.812 141.411 C 363.366 141.397 373.969 150.496 374.099 164.96 C 374.099 164.96 373.356 ${164.96-val} 352.964 ${164.96-val} C 332.572 ${164.96-val} 331.829 164.96 331.829 164.96 Z`)
+		} else if (side==="D") {
+			DLL.setAttribute('d',`M 289.566 188.513 C 289.735 174.126 300.117 164.977 310.549 164.964 C 321.103 164.95 331.706 174.049 331.836 188.513 C 331.836 188.513 331.185 ${188.513-val} 310.701 ${188.513-val} C 290.217 ${188.513-val} 289.566 188.513 289.566 188.513 Z`)		
+			DRL.setAttribute('d',`M 331.834 188.519 C 332.003 174.132 342.385 164.983 352.817 164.97 C 363.371 164.956 373.974 174.055 374.104 188.519 C 374.104 188.519 373.459 ${188.519-val} 352.969 ${188.519-val} C 332.479 ${188.519-val} 331.834 188.519 331.834 188.519 Z`)
+		};
+	}
+
+	getE("lidsU").addEventListener("input",(event) => {moveLids(event,"U")})
+	getE("lidsD").addEventListener("input",(event) => {moveLids(event,"D")})
+	getE("eyesX").addEventListener("input",(event) => {moveEyes(event,"X")})
+	getE("eyesY").addEventListener("input",(event) => {moveEyes(event,"Y")})
+
+	
+	var mode = "manual"
+
+	function changeControl(t) {
+		const inputs = document.querySelectorAll('input.rigInput');
+		let e = (t=="auto") && true || false
+		mode = t
+		inputs.forEach(input => input.disabled = e);
+	}
+
+	getE("automatic").addEventListener("input",(event) => {changeControl(event.target.value)})
+	getE("manualrig").addEventListener("input",(event) => {changeControl(event.target.value)})
+</script>
+</body>
+</html>
