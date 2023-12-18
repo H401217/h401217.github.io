@@ -32,6 +32,10 @@ Manual Control<br>
 <label for="lidsU">Eyelids (Up)</label><br>
 <input type="range" id="lidsD" min="0" max="100" class="rigInput">
 <label for="lidsD">Eyelids (Down)</label><br>
+<input type="range" id="lidsUX" min="-100" max="100" class="rigInput">
+<label for="lidsUX">Eyelids (Up X)</label><br>
+<input type="range" id="lidsUR" min="-90" max="90" class="rigInput">
+<label for="lidsUR">Eyelids (Up Rotation)</label><br>
 <br>
 <input type="range" id="mouthC" min="0" max="100" class="rigInput">
 <label for="mouthC">Mouth (Centered)</label><br>
@@ -62,9 +66,21 @@ Manual Control<br>
 	var ley = 0
 	var rex = 0
 	var rey = 0
+	var lidux = 0
+	var lidur = 0
+	var liduy = 0
+	var liddy = 0
 
 	var eyeRadius = 10
 	
+	function calcRot(cx,cy,px,py,rad) {
+		let x1 = px-cx
+		let y1 = py-cy
+		let x2 = x1*Math.cos(rad)-y1*Math.sin(rad)
+		let y2 = x1*Math.sin(rad)+y1*Math.cos(rad)
+		return [x2+cx, y2+cy] //i like .lua
+	}
+
 	function moveEyes(event,t) {
 		let lr = parseFloat(LR.getAttribute('cx'))
 		let rr = parseFloat(RR.getAttribute('cx'))
@@ -88,10 +104,25 @@ Manual Control<br>
 	function moveLids(event,side) {
 		let value = parseFloat(event.target.value)
 		let pow = 23
-		let val = (value/100)*pow
-		if (side==="U") {
-			ULL.setAttribute('d',`M 289.561 164.954 C 289.73 150.567 300.112 141.418 310.544 141.405 C 321.098 141.391 331.701 150.49 331.831 164.954 C 331.831 164.954 331.077 ${164.954-val} 310.696 ${164.954-val} C 290.315 ${164.954-val} 289.561 164.954 289.561 164.954 Z`)
-			URL.setAttribute('d',`M 331.829 164.96 C 331.998 150.573 342.38 141.424 352.812 141.411 C 363.366 141.397 373.969 150.496 374.099 164.96 C 374.099 164.96 373.356 ${164.96-val} 352.964 ${164.96-val} C 332.572 ${164.96-val} 331.829 164.96 331.829 164.96 Z`)
+		liduy = (side==="U") && value || liduy
+		liddy = (side==="D") && value || liddy
+		let v = (side==="U" || side==="UX" || side==="UR") && liduy || liddy
+		let val = (v/100)*pow
+		if (side==="U" || side==="UX" || side==="UR") {
+			lidux = (side==="UX") && value/100 || lidux
+			lidur = (side==="UR") && value/100 || lidur
+			let diff=20.311*lidux
+			
+			let center1 = 310.696+diff
+			let center2 = 352.964+diff
+			
+			let res1r = calcRot(center1,164.954-val, 331.077, 164.954-val,lidur)
+			let res1l = calcRot(center1,164.954-val, 290.315, 164.954-val,lidur)
+			let res2r = calcRot(center2,164.96-val, 373.356, 164.96-val,-lidur)
+			let res2l = calcRot(center2,164.96-val, 332.572, 164.96-val,-lidur)
+
+			ULL.setAttribute('d',`M 289.561 164.954 C 289.73 150.567 300.112 141.418 310.544 141.405 C 321.098 141.391 331.701 150.49 331.831 164.954 C 331.831 164.954 ${res1r[0]} ${res1r[1]} ${center1} ${164.954-val} C ${res1l[0]} ${res1l[1]} 289.561 164.954 289.561 164.954 Z`)
+			URL.setAttribute('d',`M 331.829 164.96 C 331.998 150.573 342.38 141.424 352.812 141.411 C 363.366 141.397 373.969 150.496 374.099 164.96 C 374.099 164.96 ${res2r[0]} ${res2r[1]} ${center2} ${164.96-val} C ${res2l[0]} ${res2l[1]} 331.829 164.96 331.829 164.96 Z`)
 		} else if (side==="D") {
 			DLL.setAttribute('d',`M 289.566 188.513 C 289.735 174.126 300.117 164.977 310.549 164.964 C 321.103 164.95 331.706 174.049 331.836 188.513 C 331.836 188.513 331.185 ${188.513-val} 310.701 ${188.513-val} C 290.217 ${188.513-val} 289.566 188.513 289.566 188.513 Z`)		
 			DRL.setAttribute('d',`M 331.834 188.519 C 332.003 174.132 342.385 164.983 352.817 164.97 C 363.371 164.956 373.974 174.055 374.104 188.519 C 374.104 188.519 373.459 ${188.519-val} 352.969 ${188.519-val} C 332.479 ${188.519-val} 331.834 188.519 331.834 188.519 Z`)
@@ -99,6 +130,8 @@ Manual Control<br>
 	}
 
 	getE("lidsU").addEventListener("input",(event) => {moveLids(event,"U")})
+	getE("lidsUX").addEventListener("input",(event) => {moveLids(event,"UX")})
+	getE("lidsUR").addEventListener("input",(event) => {moveLids(event,"UR")})
 	getE("lidsD").addEventListener("input",(event) => {moveLids(event,"D")})
 	getE("eyesX").addEventListener("input",(event) => {moveEyes(event,"X")})
 	getE("eyesY").addEventListener("input",(event) => {moveEyes(event,"Y")})
