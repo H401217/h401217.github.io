@@ -48,6 +48,16 @@ Manual Control<br>
 <br>
 <input type="range" id="fat" min="0" max="100" class="rigInput">
 <label for="fat">Fatness</label><br>
+
+<br><br>
+
+Settings
+<br>
+<input type="radio" name="options" value="color" id="coloroption" checked="true">
+<label for="coloroption">Color</label>
+<br>
+<input type="color">
+
 <script>
 	function getE(id) { //get element
 		return document.getElementById(id)
@@ -62,6 +72,8 @@ Manual Control<br>
 	var URL = getE("URlid")
 	var DRL = getE("DRlid")
 
+	var mouth = getE("mouth")
+
 	var lex = 0
 	var ley = 0
 	var rex = 0
@@ -70,6 +82,7 @@ Manual Control<br>
 	var lidur = 0
 	var liduy = 0
 	var liddy = 0
+	var mouthc = 0
 
 	var eyeRadius = 10
 	
@@ -136,6 +149,16 @@ Manual Control<br>
 	getE("eyesX").addEventListener("input",(event) => {moveEyes(event,"X")})
 	getE("eyesY").addEventListener("input",(event) => {moveEyes(event,"Y")})
 
+
+	function center(event) {
+		let value = parseFloat(event.target.value)
+		value=value/100
+		mouthc = value
+		let vv=mouthc
+		mouth.setAttribute('d',`M ${275.293+vv*46.207} ${195.496+vv*21.654} C ${275.293+vv*47.247} ${195.496+vv*21.654} ${269.288+vv*52.212} ${212.506+vv*4.644} ${275.151+vv*56.449} ${221.462-vv*4.312} C ${280.656+vv*60.844} ${229.872-vv*12.722} ${297.703+vv*42.897} ${223.551-vv*6.399} ${297.703+vv*43.897} ${223.551-vv*6.399} C ${297.703+vv*43.897} ${223.551-vv*6.399} ${281.078+vv*59.922} ${229.465-vv*12.315} ${275.031+vv*56.569} ${221.38-vv*4.23} C ${269.39+vv*52.86} ${213.838+vv*3.312} ${275.293+vv*46.207} ${195.496+vv*21.654} ${275.293+vv*46.207} ${195.496+vv*21.654} Z`)
+	}
+
+	getE("mouthC").addEventListener("input",(event) => {center(event)})
 	
 	var mode = "manual"
 
