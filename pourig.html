@@ -14,7 +14,7 @@
     <path id="DLlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0);" d="M 289.566 188.513 C 289.735 174.126 300.117 164.977 310.549 164.964 C 321.103 164.95 331.706 174.049 331.836 188.513 C 331.836 188.513 331.185 188.513 310.701 188.513 C 290.217 188.513 289.566 188.513 289.566 188.513 Z" transform="matrix(-1, 0, 0, -1, 621.402023539068, 353.476989746094)"></path>
     <path id="URlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0);" d="M 331.829 164.96 C 331.998 150.573 342.38 141.424 352.812 141.411 C 363.366 141.397 373.969 150.496 374.099 164.96 C 374.099 164.96 373.356 164.96 352.964 164.96 C 332.572 164.96 331.829 164.96 331.829 164.96 Z"></path>
     <path id="DRlid" style="stroke-width: 1.5px; fill: rgb(198, 153, 91); stroke: rgb(0, 0, 0); transform-origin: 352.969px 176.744px;" d="M 331.834 188.519 C 332.003 174.132 342.385 164.983 352.817 164.97 C 363.371 164.956 373.974 174.055 374.104 188.519 C 374.104 188.519 373.459 188.519 352.969 188.519 C 332.479 188.519 331.834 188.519 331.834 188.519 Z" transform="matrix(-1, 0, 0, -1, 0, 0)"></path>
-    <path id="mouth" style="fill: rgb(216, 216, 216); stroke-width: 2.5px; stroke: rgb(0, 0, 0);" d="M 275.293 195.496 C 275.293 195.496 269.288 212.506 275.151 221.462 C 280.656 229.872 297.703 223.551 297.703 223.551 C 297.703 223.551 281.078 229.465 275.031 221.38 C 269.39 213.838 275.293 195.496 275.293 195.496 Z"></path>
+    <path id="mouth" style="fill: rgb(123, 36, 24); stroke-width: 2.5px; stroke: rgb(0, 0, 0);" d="M 275.293 195.496 C 275.293 195.496 269.288 212.506 275.151 221.462 C 280.656 229.872 297.703 223.551 297.703 223.551 C 297.703 223.551 281.078 229.465 275.031 221.38 C 269.39 213.838 275.293 195.496 275.293 195.496 Z"></path>
   </g>
 </svg>
 <br>
@@ -41,6 +41,8 @@ Manual Control<br>
 <label for="mouthC">Mouth (Centered)</label><br>
 <input type="range" id="mouthY" min="-100" max="100" class="rigInput">
 <label for="mouthY">Mouth (Y)</label><br>
+<input type="range" id="mouthX" min="0" max="100" class="rigInput">
+<label for="mouthX">Mouth (Width)</label><br>
 <input type="range" id="mouthU" min="0" max="100" class="rigInput">
 <label for="mouthU">Mouth (Up)</label><br>
 <input type="range" id="mouthD" min="0" max="100" class="rigInput">
@@ -54,9 +56,11 @@ Manual Control<br>
 Settings
 <br>
 <input type="radio" name="options" value="color" id="coloroption" checked="true">
-<label for="coloroption">Color</label>
+<label for="coloroption">Color</label><br>
+&emsp;<input type="radio" name="coloptions" value="color" id="bodycolor" checked="true">
+<label for="bodycolor">Body Color</label>
 <br>
-<input type="color">
+<input type="color" id="col">
 
 <script>
 	function getE(id) { //get element
@@ -83,6 +87,10 @@ Settings
 	var liduy = 0
 	var liddy = 0
 	var mouthc = 0
+	var mouthy = 0
+	var mouthw = 0
+	var mouthu = 0
+	var mouthd = 0
 
 	var eyeRadius = 10
 	
@@ -150,16 +158,66 @@ Settings
 	getE("eyesY").addEventListener("input",(event) => {moveEyes(event,"Y")})
 
 
-	function center(event) {
+	function moveMouth(event,type) {
 		let value = parseFloat(event.target.value)
 		value=value/100
-		mouthc = value
+		if (type=="center") {
+			mouthc = value
+		} else if (type=="Y") {
+			mouthy = value
+		} else if (type=="X") {
+			mouthw = value
+		} else if (type=="U") {
+			mouthu = value
+		} else if (type=="D") {
+			mouthd = value
+		};
 		let vv=mouthc
-		mouth.setAttribute('d',`M ${275.293+vv*46.207} ${195.496+vv*21.654} C ${275.293+vv*47.247} ${195.496+vv*21.654} ${269.288+vv*52.212} ${212.506+vv*4.644} ${275.151+vv*56.449} ${221.462-vv*4.312} C ${280.656+vv*60.844} ${229.872-vv*12.722} ${297.703+vv*42.897} ${223.551-vv*6.399} ${297.703+vv*43.897} ${223.551-vv*6.399} C ${297.703+vv*43.897} ${223.551-vv*6.399} ${281.078+vv*59.922} ${229.465-vv*12.315} ${275.031+vv*56.569} ${221.38-vv*4.23} C ${269.39+vv*52.86} ${213.838+vv*3.312} ${275.293+vv*46.207} ${195.496+vv*21.654} ${275.293+vv*46.207} ${195.496+vv*21.654} Z`)
+		let vy=mouthy*20
+		let vx=mouthw*-30
+		let vu=mouthu*40
+		let vd=mouthd*40
+		
+		let vi = -1*vx
+		
+		mouth.setAttribute('d',`M ${275.293+vv*46.207+vx} ${195.496+vv*21.654+vy} C ${275.293+vv*47.247-vi} ${195.496+vv*21.654+vy} ${269.288+vv*52.212+0} ${212.506+vv*4.644+vy-vu} ${275.151+vv*56.449} ${221.462-vv*4.312+vy-vu} C ${280.656+vv*60.844} ${229.872-vv*12.722+vy-vu} ${297.703+vv*42.897+vi} ${223.551-vv*6.399+vy} ${297.703+vv*43.897-vx} ${223.551-vv*6.399+vy} C ${297.703+vv*42.897+vi} ${223.551-vv*6.399+vy} ${281.078+vv*59.922} ${229.465-vv*12.315+vy+vd} ${275.031+vv*56.569} ${221.38-vv*4.23+vy+vd} C ${269.39+vv*52.86} ${213.838+vv*3.312+vy+vd} ${275.293+vv*46.207-vi} ${195.496+vv*21.654+vy} ${275.293+vv*46.207+vx} ${195.496+vv*21.654+vy} Z`)
 	}
 
-	getE("mouthC").addEventListener("input",(event) => {center(event)})
+	getE("mouthC").addEventListener("input",(event) => {moveMouth(event,"center")})
+	getE("mouthY").addEventListener("input",(event) => {moveMouth(event,"Y")})
+	getE("mouthX").addEventListener("input",(event) => {moveMouth(event,"X")})
+	getE("mouthU").addEventListener("input",(event) => {moveMouth(event,"U")})
+	getE("mouthD").addEventListener("input",(event) => {moveMouth(event,"D")})
+
+	var colOption = "bodycolor"
 	
+	function colorparse(str) {
+		m = str.match(/^#([0-9a-f]{6})$/i)[1];
+		if( m) {
+			return [
+				parseInt(m.substr(0,2),16),
+				parseInt(m.substr(2,2),16),
+				parseInt(m.substr(4,2),16)
+			];
+		}
+	}
+
+	getE("col").addEventListener("input",(event) => {
+		let cols = colorparse(event.target.value)
+		if (colOption==="bodycolor") {
+			let st1 = `stroke-width: 1.5px; fill: rgb(${cols[0]}, ${cols[1]}, ${cols[2]}); stroke: rgb(0, 0, 0);`
+			getE("body").setAttribute('style',`fill: rgb(${cols[0]}, ${cols[1]}, ${cols[2]}); fill-rule: nonzero; stroke: rgb(0, 0, 0); stroke-width: 2px;`)
+			ULL.setAttribute('style',st1)
+			DLL.setAttribute('style',st1)
+			URL.setAttribute('style',st1)
+			DRL.setAttribute('style',st1+'transform-origin: 352.969px 176.744px;')
+		}
+	})
+
+	getE("bodycolor").addEventListener("input",(event) => {
+		colOption = event.target.value
+	})
+
 	var mode = "manual"
 
 	function changeControl(t) {
