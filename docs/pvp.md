@@ -145,8 +145,8 @@ The client should reply with its own info (match, avatar, version)
 |"gI"|31|The game ID|
 |"gV"|1|Game Version (default is 1)|
 |"pD"|JSON|Client Pou avatar (also known as "minI" or "minInfo")|
-
-The "pD" value is a JSON containing the avatar, here are some possible values that you can add.
+|"p"|5f4dcc3b5aa765d61d8327deb882cf99|Match Password in MD5 (only send if server asks you)|
+The "pD" value is a JSON containing the avatar, here are some possible values that you can add. You can also set the value as an empty JSON "{}" but other players will only see you as 2 floating red eyes.
 
 |Item|Value|Description|
 |-|-|-|
@@ -165,10 +165,82 @@ After that, the server should return data about the match (avatar, title, oppone
 |-|-|-|
 |Code|312|Handshake 2 (Server)|
 ||||
+|"wP"|true|WrongPassword/WithPassword. If true then you should send a password message (Code 311)|
+|"bPD"|true|Wrong "pD" value sent error|
+|"dGV"|true|Different game version (gV)|
+|"wG"|true|Wrong Game ID (gI)|
+|"gF"|true|Game is Full|
+||||
 |"ok"|true/false|Success|
 |"gT"|Beach Volley 123|The match title|
 |"mD"|JSON|Match Creator Avatar|
 |"mNW"|0|Unknown|
 |"oS"|Array|Array of opponents|
 
+The array of opponents can have a JSON
+```json
+{"i":1,"n":"stranger","d":{},"nW":0}
+```
+
 TBD
+
+another server messages if you understand
+
+```json
+313|{"i":1,"n":"stranger","d":{}}#
+```
+|Item|Value|Description|
+|-|-|-|
+|Code|313|Player Joined|
+||||
+|"i"|1|ID assigned by Host|
+|"n"|"stranger"|Player Name|
+|"d"|JSON|Player avatar/minInfo|
+
+```json
+321|{}#
+```
+|Item|Value|Description|
+|-|-|-|
+|Code|321|Match Close|
+
+```json
+322|{"pI":1}#
+```
+|Item|Value|Description|
+|-|-|-|
+|Code|321|Player leaved|
+||||
+|"pI"|322|ID of Player who leaved|
+
+
+```json
+323|{}#
+```
+|Item|Value|Description|
+|-|-|-|
+|Code|323|You got Kicked|
+
+
+```json
+324|{"pI":1}#
+```
+|Item|Value|Description|
+|-|-|-|
+|Code|324|Other Player Kicked|
+||||
+|"pI"|1|Player ID (assigned by host)|
+---
+```json
+341|{}#
+```
+This is sky hop ready, it can contain data
+```json
+342|{}#
+```
+match start
+
+```json
+422|{}#
+```
+sky hop update
