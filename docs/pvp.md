@@ -35,6 +35,7 @@ Client with port 17110 broadcasts the following message to receivers with port 2
 {"gI":31,"rN":123456,"mC":"78bc9e8656e98950a280fa30bd2e4c45"}
 ```
 The previous JSON has these three following elements
+
 | Name|Description|Example|
 | -|-|-|
 | gI|Is the Game ID|31|
@@ -56,6 +57,7 @@ After the client broadcasted the message, a server should return another JSON da
 ```json
 {"n":"Beach Volley 123","mC":"ad4a70d68dd9fbf81e7cf9ab5c6eab64"}
 ```
+
 | Name|Description|Example|
 | -|-|-|
 | n|The match name|Beach Volley 123|
@@ -97,6 +99,7 @@ After that you should start receiving the first message.
 ```json
 211|{"pI":1,"mC":"de8fdcdf7639b0e1670e88a1acf3e09d"}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|211|Handshake 1a (Server)|
@@ -161,6 +164,7 @@ After that, the server should return data about the match (avatar, title, oppone
 ```json
 312|{"ok":true,"gT":"Beach Volley 123","mD":{"sz":0.7,"ob":1,"bCo":10,"eCo":2},"mNW":0,"oS":[]}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|312|Handshake 2 (Server)|
@@ -189,6 +193,7 @@ another server messages if you understand
 ```json
 313|{"i":1,"n":"stranger","d":{}}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|313|Player Joined|
@@ -200,6 +205,7 @@ another server messages if you understand
 ```json
 321|{}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|321|Match Close|
@@ -207,6 +213,7 @@ another server messages if you understand
 ```json
 322|{"pI":1}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|321|Player leaved|
@@ -217,6 +224,7 @@ another server messages if you understand
 ```json
 323|{}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|323|You got Kicked|
@@ -225,6 +233,7 @@ another server messages if you understand
 ```json
 324|{"pI":1}#
 ```
+
 | Item|Value|Description|
 | -|-|-|
 | Code|324|Other Player Kicked|
