@@ -291,3 +291,10 @@ bA = ball current angle
 bAV = ball angle acceleration
 bGS = ball gravity (integer) (default is 1)
 ```
+
+note: these are the pvp games ordered from easiest to hardest to make a bot
+
+* pet walk - you only need to put the right number (that represents an obstacle)
+* water hop - you need to check if you can move 1 space or 2 if there isn't a floater
+* sky hop - you need to check if you need to move to left or right, and the pattern goes 4-3-4-3-4-3 and so on, also the pattern can start with 4 or 3 depending of the available players
+* beach volley - you need to recreate the game physics to get an aproximate of the ball and players position
