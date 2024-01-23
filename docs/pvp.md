@@ -35,11 +35,11 @@ Client with port 17110 broadcasts the following message to receivers with port 2
 {"gI":31,"rN":123456,"mC":"78bc9e8656e98950a280fa30bd2e4c45"}
 ```
 The previous JSON has these three following elements
-|Name|Description|Example|
-|-|-|-|
-|gI|Is the Game ID|31|
-|rN|Is a random number between 1 and 2147483647|31241441|
-|mC|It's a MD5 hash of the string "p0v"+rN+"s"|78bc9e8656e98950a280fa30bd2e4c45|
+| Name|Description|Example|
+| -|-|-|
+| gI|Is the Game ID|31|
+| rN|Is a random number between 1 and 2147483647|31241441|
+| mC|It's a MD5 hash of the string "p0v"+rN+"s"|78bc9e8656e98950a280fa30bd2e4c45|
 
 As you can see, the third element (mC) is a bit complicated than the other elements.
 The "mC" element can be explained as a function, like the one mentioned below.
@@ -56,10 +56,10 @@ After the client broadcasted the message, a server should return another JSON da
 ```json
 {"n":"Beach Volley 123","mC":"ad4a70d68dd9fbf81e7cf9ab5c6eab64"}
 ```
-|Name|Description|Example|
-|-|-|-|
-|n|The match name|Beach Volley 123|
-|mC|It's a MD5 hash of the string "p0v"+rN+"m"|ad4a70d68dd9fbf81e7cf9ab5c6eab64|
+| Name|Description|Example|
+| -|-|-|
+| n|The match name|Beach Volley 123|
+| mC|It's a MD5 hash of the string "p0v"+rN+"m"|ad4a70d68dd9fbf81e7cf9ab5c6eab64|
 
 But in this case, the "mC" hash element is different. Because instead of the previous string join (**"p0v"+rN+"s"**), it joins the strings **"p0v"+rN+"m"** (remember that rN should be converted to string).
 
@@ -97,12 +97,12 @@ After that you should start receiving the first message.
 ```json
 211|{"pI":1,"mC":"de8fdcdf7639b0e1670e88a1acf3e09d"}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|211|Handshake 1a (Server)|
-||||
-|"pI"|1|Player ID? (used in next hash)|
-|"mC"|de8fdcdf7639b0e1670e88a1acf3e09d|MD5 hash of joined strings "p0v"+pI+"m"|
+| Item|Value|Description|
+| -|-|-|
+| Code|211|Handshake 1a (Server)|
+| |||
+| "pI"|1|Player ID? (used in next hash)|
+| "mC"|de8fdcdf7639b0e1670e88a1acf3e09d|MD5 hash of joined strings "p0v"+pI+"m"|
 
 Remember that the Pou app checks if the MD5 hashes are correct by recreating them.
 After that message, the client should return the next message
@@ -110,12 +110,12 @@ After that message, the client should return the next message
 212|{"n":"username","mC":"MD5"}#
 ```
 
-|Item|Value|Description|
-|-|-|-|
-|Code|212|Handshake 1a (Client)|
-||||
-|"n"|username|Client Username (can be random if not logged in)|
-|"mC"|c850985b4feec96795367cf9f6a67de4|MD5 hash of joined strings "p0v"+pI+"s"|
+| Item|Value|Description|
+| -|-|-|
+| Code|212|Handshake 1a (Client)|
+| |||
+| "n"|username|Client Username (can be random if not logged in)|
+| "mC"|c850985b4feec96795367cf9f6a67de4|MD5 hash of joined strings "p0v"+pI+"s"|
 
 This hash creation uses the "pI" value of the previous server message (code 211).
 After that, the server returns another message.
@@ -124,11 +124,11 @@ After that, the server returns another message.
 213|{"n":"username2"}#
 ```
 
-|Item|Value|Description|
-|-|-|-|
-|Code|213|Handshake 1b (Server)|
-||||
-|"n"|username2|Match creator Username|
+| Item|Value|Description|
+| -|-|-|
+| Code|213|Handshake 1b (Server)|
+| |||
+| "n"|username2|Match creator Username|
 
 The message tells the client about the creator name.
 
@@ -138,44 +138,44 @@ The client should reply with its own info (match, avatar, version)
 311|{"gI":31,"gV":1,"pD":{"sz":1,"ob":0,"bCo":1,"eCo":1,"ouf":0,"hat":0}}#
 ```
 
-|Item|Value|Description|
-|-|-|-|
-|Code|311|Handshake 2 (Client)|
-||||
-|"gI"|31|The game ID|
-|"gV"|1|Game Version (default is 1)|
-|"pD"|JSON|Client Pou avatar (also known as "minI" or "minInfo")|
-|"p"|5f4dcc3b5aa765d61d8327deb882cf99|Match Password in MD5 (only send if server asks you)|
+| Item|Value|Description|
+| -|-|-|
+| Code|311|Handshake 2 (Client)|
+| |||
+| "gI"|31|The game ID|
+| "gV"|1|Game Version (default is 1)|
+| "pD"|JSON|Client Pou avatar (also known as "minI" or "minInfo")|
+| "p"|5f4dcc3b5aa765d61d8327deb882cf99|Match Password in MD5 (only send if server asks you)|
 The "pD" value is a JSON containing the avatar, here are some possible values that you can add. You can also set the value as an empty JSON "{}" but other players will only see you as 2 floating red eyes.
 
-|Item|Value|Description|
-|-|-|-|
-|"sz"|1|Pou Size (from 0.5 to 1)|
-|"ob"|0|Pou Obesity (from 0 to 1)|
-|"bCo"|1|Body Color (ID)|
-|"eCo"|1|Eye Color (ID)|
-|"ouf"|0|Outfit (ID)||
-|"hat"|0|Hat (ID)|
+| Item|Value|Description|
+| -|-|-|
+| "sz"|1|Pou Size (from 0.5 to 1)|
+| "ob"|0|Pou Obesity (from 0 to 1)|
+| "bCo"|1|Body Color (ID)|
+| "eCo"|1|Eye Color (ID)|
+| "ouf"|0|Outfit (ID)||
+| "hat"|0|Hat (ID)|
 
 After that, the server should return data about the match (avatar, title, opponents)
 ```json
 312|{"ok":true,"gT":"Beach Volley 123","mD":{"sz":0.7,"ob":1,"bCo":10,"eCo":2},"mNW":0,"oS":[]}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|312|Handshake 2 (Server)|
-||||
-|"wP"|true|WrongPassword/WithPassword. If true then you should send a password message (Code 311)|
-|"bPD"|true|Wrong "pD" value sent error|
-|"dGV"|true|Different game version (gV)|
-|"wG"|true|Wrong Game ID (gI)|
-|"gF"|true|Game is Full|
-||||
-|"ok"|true/false|Success|
-|"gT"|Beach Volley 123|The match title|
-|"mD"|JSON|Match Creator Avatar|
-|"mNW"|0|Unknown|
-|"oS"|Array|Array of opponents|
+| Item|Value|Description|
+| -|-|-|
+| Code|312|Handshake 2 (Server)|
+| |||
+| "wP"|true|WrongPassword/WithPassword. If true then you should send a password message (Code 311)|
+| "bPD"|true|Wrong "pD" value sent error|
+| "dGV"|true|Different game version (gV)|
+| "wG"|true|Wrong Game ID (gI)|
+| "gF"|true|Game is Full|
+| |||
+| "ok"|true/false|Success|
+| "gT"|Beach Volley 123|The match title|
+| "mD"|JSON|Match Creator Avatar|
+| "mNW"|0|Unknown|
+| "oS"|Array|Array of opponents|
 
 The array of opponents can have a JSON
 ```json
@@ -189,47 +189,47 @@ another server messages if you understand
 ```json
 313|{"i":1,"n":"stranger","d":{}}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|313|Player Joined|
-||||
-|"i"|1|ID assigned by Host|
-|"n"|"stranger"|Player Name|
-|"d"|JSON|Player avatar/minInfo|
+| Item|Value|Description|
+| -|-|-|
+| Code|313|Player Joined|
+| |||
+| "i"|1|ID assigned by Host|
+| "n"|"stranger"|Player Name|
+| "d"|JSON|Player avatar/minInfo|
 
 ```json
 321|{}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|321|Match Close|
+| Item|Value|Description|
+| -|-|-|
+| Code|321|Match Close|
 
 ```json
 322|{"pI":1}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|321|Player leaved|
-||||
-|"pI"|322|ID of Player who leaved|
+| Item|Value|Description|
+| -|-|-|
+| Code|321|Player leaved|
+| |||
+| "pI"|322|ID of Player who leaved|
 
 
 ```json
 323|{}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|323|You got Kicked|
+| Item|Value|Description|
+| -|-|-|
+| Code|323|You got Kicked|
 
 
 ```json
 324|{"pI":1}#
 ```
-|Item|Value|Description|
-|-|-|-|
-|Code|324|Other Player Kicked|
-||||
-|"pI"|1|Player ID (assigned by host)|
+| Item|Value|Description|
+| -|-|-|
+| Code|324|Other Player Kicked|
+| |||
+| "pI"|1|Player ID (assigned by host)|
 ---
 ```json
 341|{}#
