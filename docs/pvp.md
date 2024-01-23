@@ -243,4 +243,42 @@ match start
 ```json
 422|{}#
 ```
-sky hop update
+sky hop data update
+
+---
+more data
+---
+
+BEACH VOLLEY DATA
+
+it is a json with the data update lol
+```txt
+note: rotation is anti clockwise and in radians
+(client processes physics for smooth perfomance)
+
+matcher = player who created match
+opponent = player who joined
+
+grid = 15x5 (y can be infinite)
+speed = near 5.5
+
+json data keys
+
+mX = matcher X position
+mY = matcher Y position
+mVX = matcher X force (right)
+mVY = matcher Y force (up)
+
+oX = opponent X position
+oY = opponent Y position
+oVX = opponent X force
+oVY = opponent Y force
+
+bX = ball X position
+bY = ball Y position
+bVX = ball X force
+bVY = ball Y force
+bA = ball current angle
+bAV = ball angle acceleration
+bGS = ball gravity (integer) (default is 1)
+```
