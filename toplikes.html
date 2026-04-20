@@ -1,0 +1,54 @@
+<!--- this was vibe coded i guess--->
+<html>
+    <body>
+        Top Likes:
+        <p id="nombre"></p>
+    </body>
+    <script>
+
+        function update(datos) {
+            let tabla = JSON.parse(decodeURIComponent(datos))
+            var str = ""
+            console.log(tabla.items.length)
+            for (let c=0;c<=tabla.items.length-1;c++) {
+                console.log(str,c)
+                str = str + tabla.items[c].n + " (Likes: " + tabla.items[c].nL + "; ID: " + tabla.items[c].i + ")" + "<br>"
+                str = str.toString()
+            };
+            console.log("escaped")
+            console.log(str)
+            document.getElementById("nombre").innerHTML = str
+        }
+
+        function getDataXHR(url) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('GET', url, true); // true = asynchronous
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) { // Request completed
+            if (xhr.status >= 200 && xhr.status < 300) {
+                try {
+                    const data = JSON.parse(decodeURIComponent(xhr.responseText));
+                    update(xhr.responseText)
+                    console.log("Data received:", data);
+                } catch (e) {
+                    console.error("Error parsing JSON:", e.message, xhr.responseText);
+                }
+            } else {
+                console.error(`HTTP error! Status: ${xhr.status}`);
+            }
+        }
+    };
+
+    xhr.onerror = function () {
+        console.error("Network error occurred.");
+    };
+
+    xhr.send(); // Send request
+}
+
+// Example usage
+    getDataXHR('https://api.cors.lol/?url=http://app.pou.me/ajax/site/top_likes%3F_r=300%26_a=1%26_c=1');
+    </script>
+</html>
