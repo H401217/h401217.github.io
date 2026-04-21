@@ -1,7 +1,3 @@
----
-title: H401217 | Pou rig and Pou API
-description: "Welcome to my page, here you can find some of my works related to Pou, like a experimental rig, documentation about Pou API, and a semifunctional top likes list."
----
 welcome to my page
 
 just testing code
