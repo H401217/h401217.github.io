@@ -42,7 +42,11 @@
                 }
             } else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
-                document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")"
+                if (xhr.status === 0) {
+                    document.getElementById("nombre").innerHTML = "Proxy error: The proxy probably got rate-limited (Pou API doesn't have a CORS header, so I cannot make a direct request to servers). You can alternatively visit the direct pou API: http://app.pou.me/ajax/site/top_likes%3F_r=300%26_a=1%26_c=1"
+                } else {
+                  document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")"  
+                }
             }
         }
     };
