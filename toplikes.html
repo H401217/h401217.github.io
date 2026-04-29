@@ -34,7 +34,7 @@
             if (xhr.status >= 200 && xhr.status < 300) {
                 try {
                     const data = JSON.parse(decodeURIComponent(xhr.responseText));
-                    update(xhr.responseText)
+                    update(data.contents)
                     console.log("Data received:", data);
                 } catch (e) {
                     console.error("Error parsing JSON:", e.message, xhr.responseText);
@@ -59,6 +59,6 @@
 }
 
 // Example usage
-    getDataXHR('https://api.cors.lol/?url=http://app.pou.me/ajax/site/top_likes%3F_r=300%26_a=1%26_c=1');
+    getDataXHR('https://api.allorigins.win/get?url=http://app.pou.me/ajax/site/top_likes%3F_r=300%26_a=1%26_c=1');
     </script>
 </html>
