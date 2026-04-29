@@ -7,6 +7,7 @@
     <body>
         <h1>Top Likes:</h1>
         <p id="nombre">Loading...</p>
+<br>Powered by CodeTabs and Pou API
     </body>
     <script>
 
@@ -34,7 +35,7 @@
             if (xhr.status >= 200 && xhr.status < 300) {
                 try {
                     const data = JSON.parse(decodeURIComponent(xhr.responseText));
-                    update(data.contents)
+                    update(xhr.responseText)
                     console.log("Data received:", data);
                 } catch (e) {
                     console.error("Error parsing JSON:", e.message, xhr.responseText);
@@ -59,6 +60,6 @@
 }
 
 // Example usage
-    getDataXHR(`https://whateverorigin.org/get?url=${encodeURIComponent("http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1")}`);
+    getDataXHR(`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent("http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1")}`);
     </script>
 </html>
