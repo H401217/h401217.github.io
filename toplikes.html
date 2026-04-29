@@ -38,10 +38,11 @@
                     console.log("Data received:", data);
                 } catch (e) {
                     console.error("Error parsing JSON:", e.message, xhr.responseText);
-                    document.getElementById("nombre").innerHTML = e.message
+                    document.getElementById("nombre").innerHTML = "Parsing error:" + e.message
                 }
             } else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
+                document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")"
             }
         }
     };
