@@ -6,7 +6,7 @@
     </head>
     <body>
         <h1>Top Likes:</h1>
-        <p id="nombre"></p>
+        <p id="nombre">Loading...</p>
     </body>
     <script>
 
@@ -59,6 +59,6 @@
 }
 
 // Example usage
-    getDataXHR('https://api.allorigins.win/get?url=http://app.pou.me/ajax/site/top_likes%3F_r=300%26_a=1%26_c=1');
+    getDataXHR(`https://whateverorigin.org/get?url=${encodeURIComponent("http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1")}`);
     </script>
 </html>
