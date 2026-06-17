@@ -7,7 +7,8 @@
     <body>
         <h1>Top Likes:</h1>
         <p id="nombre">Loading...</p>
-<br>Powered by CodeTabs and Pou API
+<br>Powered by CodeTabs and Pou API <br><br>
+        Issue/suggestion? <a href="https://github.com/H401217/h401217.github.io/issues">Click here</a>
     </body>
     <script>
 
@@ -46,7 +47,7 @@
                 if (xhr.status === 0) {
                     document.getElementById("nombre").innerHTML = "Proxy error: The proxy probably got rate-limited (Pou API doesn't have a CORS header, so I cannot make a direct request to servers). You can alternatively visit the direct pou API: http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1"
                 } else {
-                  document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")" + '</br>See <a href="http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1">Direct link (http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1)</a> <br>and proxy issue: https://github.com/jolav/codetabs/issues/43#issuecomment-4661049241'
+                  document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")" + '</br>See <a href="http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1">Direct link (http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1)</a> <br>proxy issue: https://github.com/jolav/codetabs/issues/43#issuecomment-4661049241'
                 }
             }
         }
