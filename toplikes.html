@@ -33,7 +33,7 @@
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) { // Request completed
-            if (xhr.status >= 200 && xhr.status < 300) {
+            if (xhr.status >= 200 && xhr.status < 400) {
                 try {
                     const data = JSON.parse(decodeURIComponent(xhr.responseText));
                     update(xhr.responseText)
@@ -57,7 +57,7 @@
         console.error("Network error occurred.");
     };
 
-    xhr.send(); // Send request
+    xhr.send(null); // Send request
 }
 
 // Example usage
