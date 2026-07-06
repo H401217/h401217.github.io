@@ -43,11 +43,15 @@
                     document.getElementById("nombre").innerHTML = "Parsing error:" + e.message
                 }
             } else {
+                if (xhr.responseURL) {
+                 getDataXHR(xhr.responseURL)   //idk what to do
+                else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
                 if (xhr.status === 0) {
                     document.getElementById("nombre").innerHTML = "Proxy error: The proxy probably got rate-limited (Pou API doesn't have a CORS header, so I cannot make a direct request to servers). You can alternatively visit the direct pou API: http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1"
                 } else {
                   document.getElementById("nombre").innerHTML = "Proxy error:" + xhr.statusText + "(" + xhr.status + ")" + '</br>See <a href="http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1">Direct link (http://app.pou.me/ajax/site/top_likes?_r=300&_a=1&_c=1)</a> <br>The proxy we use (Vercel) doesnt work right now, we previously used CodeTabs but it has been ratelimited xd'
+                }
                 }
             }
         }
