@@ -5,25 +5,44 @@
         <meta name="description" content="See the top 20 most liked Pous (experimental)" />
     </head>
     <body>
+        <a href="./">Go back</a>
         <h1>Top Likes:</h1>
+        <a href="./toplikes3d.html">Click here to see Pou 3D toplikes</a><br>
         <p id="nombre">Loading...</p>
+        <table hidden=true id="maintable">
+            <thead>
+                <th>Position</th>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Likes</th>
+            </thead>
+            <tbody id="likescontent"></tbody>
+        </table>
 <br>Powered by Vercel and Pou API <br><br>
         Issue/suggestion? <a href="https://github.com/H401217/h401217.github.io/issues">Click here</a>
     </body>
-    <script>
 
+
+    <script>
+        
         function update(datos) {
             let tabla = JSON.parse(decodeURIComponent(datos))
             var str = ""
             console.log(tabla.items.length)
+            let Table = document.getElementById("likescontent")
             for (let c=0;c<=tabla.items.length-1;c++) {
+                let player = tabla.items[c]
+                /*
                 console.log(str,c)
                 str = str + tabla.items[c].n + " (Likes: " + tabla.items[c].nL + "; ID: " + tabla.items[c].i + ")" + "<br>"
-                str = str.toString()
+                str = str.toString()*/
+                str = str + `<tr><td>${c+1}</td> <td><a href="./visitpou2d.html?id=${player.i}">${player.i}</a></td> <td>${player.n}</td> <td>${player.nL}</td></tr>`
             };
-            console.log("escaped")
+            //console.log("escaped")
             console.log(str)
-            document.getElementById("nombre").innerHTML = str
+            Table.innerHTML = str
+            document.getElementById("maintable").hidden = false
+            document.getElementById("nombre").hidden = true
         }
 
         function getDataXHR(url) {
@@ -44,7 +63,7 @@
                 }
             } else {
                 if (xhr.responseURL) {
-                 getDataXHR(xhr.responseURL)   //idk what to do
+                 //getDataXHR(xhr.responseURL)   //idk what to do
                 } else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
                 if (xhr.status === 0) {
@@ -65,6 +84,7 @@
 }
 
 // Example usage
-    getDataXHR(`https://h40cors-drlv291gq-h40dev.vercel.app/api`);
+//https://h40cors-drlv291gq-h40dev.vercel.app/api
+    getDataXHR(`https://h40cors-6isp3nkmj-h40dev.vercel.app/api?req=toplikes2d`);
     </script>
 </html>
