@@ -1,5 +1,5 @@
 ---
-hello:world
+hello: world
 ---
 welcome to my page, here i post some html programs (such as the top likes page) and some docs about pou api (not official but kinda useful)
 
