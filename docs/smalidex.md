@@ -31,6 +31,8 @@ You can use [this button template](./smalifiles/buttongroupHorz.md). Remember re
 [binary button](./smalifiles/binarybutton.md)
 
 ## Creating a potion
+[Note: I made a youtube video about it lol](https://youtu.be/pX6FenarckY?si=CkGmgDFZvjl6z0oS)
+
 Before creating a potion you should assign an ID to it (NUMBERS after 8 are recomended)
 
 ### Image
