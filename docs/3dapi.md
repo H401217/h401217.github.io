@@ -5,7 +5,7 @@ The main endpoint for the API is `https://app.pou3d.me/app`
 Current version for 1.0.84 is "84"
 
 ## Important notes
-* IDs aren't numeric in Pou 3D, for example: `1Z5fK5yI` is the player ID for H40dev (my Pou 3D alt acc ^_^)
+* IDs aren't numeric in Pou 3D, for example: `1Z5fK5yI` is the player ID for H40dev (my Pou 3D acc ^_^)
 * There is an `s` value in the links that sometimes is the cookie and other times it's the cookie fused with the player ID
   * Cookie example: DzCy9k3ZIyXn324EOrUvNH
   * ID example: 1a2b3c4d
@@ -105,34 +105,119 @@ Account info
 
 ---
 ### pos (Pou searching and lists)
-i gave up bc i have homework rn
-* /pos/pop?sp=ppW&c=1&v=60&s=COOKIEPLAYERID (popular by week)
-* /pos/pop?sp=ppM&c=1&v=60&s=COOKIEPLAYERID (popular by month)
-* /pos/pop?sp=ppA&c=1&v=60&s=COOKIEPLAYERID (popular all time)
-* /pos/pop?sp=lkA&c=1&v=60&s=COOKIEPLAYERID (top likers?)
-* /pos/sch?nk=abc&c=1&v=84&s=CPID (search)
-* /pos/rnd?vs=1&c=1&v=84&s=CPID (random)
+This uses cookie with ID
 
-* /pou/stt?pI=0elidNcC&c=1&v=60&s=COOKIEPLAYERID
-* /pou/vis?id=puDANxgE&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/lik?id=puDANxgE&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/ulk?id=puDANxgE&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/mgR?id=puDANxgE&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/mgS?id=1Z5fK5yI&c=1&v=84&s=COOKIEPLAYERID (messages you sent?)
-* /pou/msg?id=puDANxgE&mI=1&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/mgS?id=puDANxgE&mI=1&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo)
-* /pou/vtd?id=ID&c=1&v=84&s=COOKIEPLAYERID (who you visited)
-* /pou/vtr?id=ID&c=1&v=84&s=COOKIEPLAYERID (visitors)
-* /pou/lkd?id=l0VEGiAN&c=1&v=84&s=COOKIEPLAYERID (lista de Me gusta)
-* /pou/lkr?id=l0VEGiAN&c=1&v=84&s=COOKIEPLAYERID (lista de simpatizantes)
-* /pou/fav?id=ID&c=1&v=84&s=COOKIEPLAYERID
+`/pos/pop`
 
+Returns a list of most popular Pous (or top likes)
+|Query|Description|Example|
+|-|-|-|
+|sp|List option|ppW (week popular)<br>ppM (month popular)<br>ppA (all time popular)<br>lkA (top likes)|
 
+<br>
 
+`/pos/sch`
 
-* /gam/rkg?gm=3_1&sp=tpW&dt=1a&c=1&v=84&s=COOKIEPLAYERID (food drop weekly)
-* /gam/rkg?gm=3_1&sp=tpM&dt=19&c=1&v=84&s=COOKIEPLAYERID (food drop month)
-* /gam/rkg?gm=3_1&sp=tpA&c=1&v=84&s=COOKIEPLAYERID (food drop all)
-* /gam/rkg?gm=3_1&sp=fvA&c=1&v=84&s=COOKIEPLAYERID (food drop fav)
+Searches a Pou by nickname
+|Query|Description|Example|
+|-|-|-|
+|nk|Nickname|Pou|
+
+<br>
+
+`/pos/rnd`
+
+Returns a random Pou
+|Query|Description|Example|
+|-|-|-|
+|vs|??? (defaults to 1)|1|
+---
+### pou (actions with other players)
+`/pou/stt`
+
+Pou status? (won't risk the ban xd)
+|Query|Description|Example|
+|-|-|-|
+|pI|Player ID (probably own ID)|1Z5fK5yI|
+
+<br>
+
+**To simplify, all links below (in this section) have the following additional query:**
+
+|Query|Description|Example|
+|-|-|-|
+|id|Player ID (can be your own or from other)|puDANxgE (Doradingo's ID)|
+
+<br>
+
+`/pou/vis`
+
+Visits a Pou
+<br><br>
+
+`/pou/lik`
+
+Likes a Pou
+<br><br>
+
+`/pou/ulk`
+
+Unlikes a Pou
+<br><br>
+
+`/pou/mgR`
+
+Returns messages the Player received
+<br><br>
+
+`/pou/mgS`
+
+Returns messages the Player sent
+<br><br>
+
+`/pou/msg`
+
+Sends a message to a Pou guest book
+|Query|Description|Example|
+|-|-|-|
+|`mI`|Message ID (numerical)|1 (not sure about the other ones)|
+
+<br>
+
+`/pou/vtd`
+
+Shows what Pous did the player visit
+<br><br>
+
+`/pou/vtr`
+
+Shows what Pous visited the player
+<br><br>
+
+`/pou/lkd`
+
+Shows what Pous the player likes
+<br><br>
+
+`/pou/lkr`
+
+Shows whart Pous like the player
+<br><br>
+
+`/pou/fav`
+
+Shows the favorite Pous from the player
+
+---
+### gam (Top Score)
+`/gam/rkg`
+
+Returns the minigame leaderboard
+|Query|Description|Example|
+|-|-|-|
+|gm|Game ID|`3_1` (food drop)|
+|sp|Time selection|`tpW` (week)<br>`tpM` (month)<br>`tpA` (all time)<br>`fvA` (favorites)|
+|dt|??? maybe timestamp|`1a` for week (idk)<br>`19` for month (idk)<br>(this was made on august 31th 2026 so maybe it gives a hint)|
 
 The links were found using memory dump
+<!-- * /pou/mgS?id=puDANxgE&mI=1&c=1&v=60&s=COOKIEPLAYERID (visit id is from doradingo) -->
