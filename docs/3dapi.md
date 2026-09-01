@@ -87,7 +87,7 @@ Returns Pou PNG
 ---
 ### acc (other account actions)
 
-`/acc/chgPwd`?pw=MD5PASSWORD&c=1&v=60&s=COOKIE
+`/acc/chgPwd`
 
 Changes account password
 |Query|Description|Example|
